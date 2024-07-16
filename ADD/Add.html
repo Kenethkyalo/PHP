@@ -1,0 +1,43 @@
+<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Two Numbers</title>
+<link rel="php?result" href="Add.php">
+</head>
+<body>
+
+<h2>Add Two Numbers</h2>
+
+<form id="Add" method="post">
+  <label for="num1">Enter first number:</label><br>
+  <input type="text" id="num1" name="num1"><br>
+  <label for="num2">Enter second number:</label><br>
+  <input type="text" id="num2" name="num2"><br><br>
+  <input type="submit" value="Add Numbers">
+  
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the values from the form
+    $num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
+
+    // Validate input (you may want to add more robust validation)
+    if (!is_numeric($num1) || !is_numeric($num2)) {
+        echo("Location: Add.php?error=invalid_input");
+        exit();
+    }
+
+    // Add the numbers
+    $result = $num1 + $num2;
+
+    // Redirect back to the form with the result as a URL parameter
+    echo("Location: Add.php?result=$result");
+    exit();
+}
+?>
+</body>
+</html>
